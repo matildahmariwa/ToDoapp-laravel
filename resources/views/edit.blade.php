@@ -16,7 +16,7 @@
         {{Form::text('item',$task->item,['class'=>'form-control','placeholder'=>'Insert here'])}}
         </div>
         {{Form::submit('submit',['class'=>'btn btn-primary','type'=>'submit','id'=>'submit'])}}
-        
+        {{Form::hidden('_method','PUT')}}
         {!! Form::close() !!}
         @include('inc.messages') 
         <?php
@@ -41,7 +41,9 @@
                                 </td>
 
                                 <td>{!!Form::open(['action'=>['TasksController@destroy',$task->id],'method'=>'POST','class'=>'pull-right'])!!}
-                                        {{Form::hidden('_method','DELETE')}}
+                                        
+                                        {{Form::hidden('_method','PUT')}}
+                                        
                                         {{Form::submit('Delete',['class'=>'btn btn-danger'])}}
                                         {!!Form::close()!!}</td>
                            <td>

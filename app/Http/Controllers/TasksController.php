@@ -76,9 +76,10 @@ class TasksController extends Controller
     public function update(Request $request, $id)
     {
         $task=Task::find($id);
-        $task->save;
+        $task->item=$request->input('item');
+        $task->save();
 
-        return redirect('/home')
+        return redirect('/home')->with('success','Updated succesfully');
     }
 
     /**
