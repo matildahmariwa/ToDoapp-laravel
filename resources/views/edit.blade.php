@@ -9,11 +9,11 @@
 
                 <div class="panel-body">
                         
-                    <p>My tasks</p>
-    {!! Form::open(['action' => 'TasksController@store','method'=>'POST','enctype'=>'multipart/form-data'])!!}
+                    <p>Edit task</p>
+    {!! Form::open(['action' => ['TasksController@update',$task->id],'method'=>'POST','enctype'=>'multipart/form-data'])!!}
         <div class="form-group">
         {{Form::label('item','Create task')}}
-        {{Form::text('item','',['class'=>'form-control','placeholder'=>'Insert here'])}}
+        {{Form::text('item',$task->item,['class'=>'form-control','placeholder'=>'Insert here'])}}
         </div>
         {{Form::submit('submit',['class'=>'btn btn-primary','type'=>'submit','id'=>'submit'])}}
         
@@ -45,8 +45,7 @@
                                         {{Form::submit('Delete',['class'=>'btn btn-danger'])}}
                                         {!!Form::close()!!}</td>
                            <td>
-                               {{-- <a href=""></a> --}}
-                               <a href="/To-do/public/home/{{$task->id}}/edit" class="btn btn-default" style="float:left">Edit</a>
+                               <button> Edit</button>
                            <td>
                             </tr>
                             @endforeach

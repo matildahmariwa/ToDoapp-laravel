@@ -17,4 +17,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::resource('tasks','TasksController');
+Route::get('/home/{task_id}/edit', ['as' => 'edit', 'uses' => 'TasksController@edit']);
+
 Route::get('/home', 'HomeController@index')->name('home');
