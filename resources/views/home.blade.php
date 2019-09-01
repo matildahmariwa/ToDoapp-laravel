@@ -19,10 +19,7 @@
         
         {!! Form::close() !!}
         @include('inc.messages') 
-        <?php
-        $tasks=App\Task::all();
-        ?>
-                    
+                 
                     <div class="panel panel-default ">
                         <div class="panel-heading">
                             My tasks today
@@ -34,6 +31,8 @@
                                     <th>delete</th>
                                 </thead>
                                 <tbody>
+                         
+                         
                             @foreach($tasks as $task)
                             <tr>
                                 <td class="table-text">
@@ -50,8 +49,10 @@
                            <td>
                             </tr>
                             @endforeach
+                           
                                 </tbody>
                             </table>
+                          
                         </div>
                     </div>
                            

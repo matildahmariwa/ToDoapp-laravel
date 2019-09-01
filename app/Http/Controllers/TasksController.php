@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Task;
+use Auth;
 
 class TasksController extends Controller
 {
@@ -38,8 +39,9 @@ class TasksController extends Controller
         //Create Task
         $task=new Task;
         $task->item= $request->input('item');
+        $task->user_id=auth()->user()->id;
         $task->save();
-
+    
         return redirect("/home");
     }
 
@@ -77,6 +79,7 @@ class TasksController extends Controller
     {
         $task=Task::find($id);
         $task->item=$request->input('item');
+        $task->user_id=auth()->user()->id;
         $task->save();
 
         return redirect('/home')->with('success','Updated succesfully');

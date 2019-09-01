@@ -9,7 +9,7 @@
 
                 <div class="panel-body">
                         
-                    <p>Edit task</p>
+                    <h1 class="text-center">Edit task</h1>
     {!! Form::open(['action' => ['TasksController@update',$task->id],'method'=>'POST','enctype'=>'multipart/form-data'])!!}
         <div class="form-group">
         {{Form::label('item','Create task')}}
@@ -18,12 +18,10 @@
         {{Form::submit('submit',['class'=>'btn btn-primary','type'=>'submit','id'=>'submit'])}}
         {{Form::hidden('_method','PUT')}}
         {!! Form::close() !!}
-        @include('inc.messages') 
-        <?php
-        $tasks=App\Task::all();
-        ?>
+        @include('inc.messages')
+        
                     
-                    <div class="panel panel-default ">
+                    {{-- <div class="panel panel-default ">
                         <div class="panel-heading">
                             My tasks today
                         </div>
@@ -61,7 +59,7 @@
                     </div>
                     </div>
             </div>
-        </div>
+        </div> --}}
     </div>
 </div>
 @endsection
