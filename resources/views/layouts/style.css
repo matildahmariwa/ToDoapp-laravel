@@ -1,0 +1,172 @@
+
+       
+            html, body {
+                background-color: #fff;
+                color: #636b6f;
+                font-family: 'Nunito', sans-serif;
+                font-weight: 200;
+                height: 100vh;
+                margin: 0;
+            }
+
+            .full-height {
+                height: 100vh;
+            }
+            
+            .right-title h1{
+                font-family: 'Great Vibes', cursive;
+                color:orange;
+                
+                
+            }
+
+            .flex-center {
+                align-items: center;
+                display: flex;
+                justify-content: center;
+            }
+
+            .position-ref {
+                position: relative;
+            }
+
+            .top-right {
+                position: absolute;
+                right: 10px;
+                top: 18px;
+            }
+
+            .content {
+                text-align: center;
+            }
+
+            .title {
+                font-size: 84px;
+            }
+
+            .links > a {
+                color: #636b6f;
+                padding: 0 25px;
+                font-size: 13px;
+                font-weight: 600;
+                letter-spacing: .1rem;
+                text-decoration: none;
+                text-transform: uppercase;
+            }
+
+            .m-b-md {
+                margin-bottom: 30px;
+            }
+            .footer{
+                background-color: aliceblue;
+                height:10%;
+                width:100%;
+                padding-top: 10px;
+                position: fixed;
+                left: 0;
+                bottom: 0;
+                text-align: center;
+
+            }
+            #full-body{
+                background-image:url(css/pic8.jpg);
+                width: 100%;
+                height: 100%;
+                background-repeat: no-repeat;
+                background-size: cover; /* or contain depending on what you want */
+                background-position: center center;
+                background-repeat: no-repeat;
+            }
+           
+        #login{
+         background-color: #fff;
+        }  
+        #view-button{
+            margin:50px;
+            background: transparent;
+            font-weight: bold;
+            color: white;
+        }    
+   
+        /* start the footer */
+
+    .footer {
+    background-color: #464646;
+    color: #fff;
+    font-size: 10px !important;
+    padding-bottom: 10px;
+}
+
+.footer * {
+    font-size: 15px;
+}
+
+
+
+.footer a {
+    color: orange;
+}
+
+.footer>* {
+    top: 50%;
+    position: relative;
+    transform: translateY(-50%);
+    margin: 0 !important;
+}
+.latest-recipes{
+    top: 20%;
+    position: relative;
+    transform:translateY(50%);
+}
+
+.top-right.links {
+    width: 100%;
+    max-width: 955px;
+    margin: auto;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.right-title {
+    float: left;
+}
+
+.top-right.links>a {
+    float: right;
+    color: #fff;
+}
+
+/* The footer */
+
+
+/*end  welcome buttons*/
+
+div#full-body>div:nth-child(2)>a:last-child>button:hover {
+    background-color: blue;
+}
+
+div#full-body>div:nth-child(2)>a>button {
+    transition: all 500ms ease-in-out 0ms;
+}
+
+div#full-body>div:nth-child(2)>a:first-child>button {
+color: #fff;
+border: 0px solid #ffff;
+padding: 20px 40px;
+box-shadow: 0px 0px 16px 1px #000;
+font-weight: 700 !important;
+letter-spacing: 1px;
+font-size: 20px;
+}
+
+div#full-body>div:nth-child(2)>a:last-child>button {
+background-color: #ffa504;
+color: #fff;
+border: 0px solid #ffff;
+padding: 20px 40px;
+box-shadow: 0px 0px 16px 1px #000;
+font-weight: 700 !important;
+letter-spacing: 1px;
+font-size: 20px;
+}
+

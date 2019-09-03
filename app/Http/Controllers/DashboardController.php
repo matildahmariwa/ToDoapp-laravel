@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Task;
-use Auth;
+use App\User;
 
-class TasksController extends Controller
+class DashboardController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,9 @@ class TasksController extends Controller
      */
     public function index()
     {
-        //
+        $user_id=auth()->user()->id;
+        $user=User::find($user_id);
+        return view('layouts.dashboard')->with('tasks',$user->tasks);
     }
 
     /**
@@ -36,13 +38,7 @@ class TasksController extends Controller
      */
     public function store(Request $request)
     {
-        //Create Task
-        $task=new Task;
-        $task->item= $request->input('item');
-        $task->user_id=auth()->user()->id;
-        $task->save();
-    
-        return redirect("/dashboard");
+        //
     }
 
     /**
@@ -64,8 +60,7 @@ class TasksController extends Controller
      */
     public function edit($id)
     {
-        $task=Task::find($id);
-        return view('edit')->with('task',$task);
+        //
     }
 
     /**
@@ -77,12 +72,7 @@ class TasksController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $task=Task::find($id);
-        $task->item=$request->input('item');
-        $task->user_id=auth()->user()->id;
-        $task->save();
-
-        return redirect('/dashboard')->with('success','Updated succesfully');
+        //
     }
 
     /**
@@ -93,10 +83,6 @@ class TasksController extends Controller
      */
     public function destroy($id)
     {
-        //delete task
-        $task=Task::find($id);
-        $task->delete();
-
-        return redirect('/home')->with('success','Task deleted successfully');
+        //
     }
 }

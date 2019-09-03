@@ -14,6 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/dashboard', function () {
+    return view('layouts.dashboard');
+});
 
 Auth::routes();
 
@@ -21,3 +24,4 @@ Route::resource('tasks','TasksController');
 Route::get('/home/{task_id}/edit', ['as' => 'edit', 'uses' => 'TasksController@edit']);
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
