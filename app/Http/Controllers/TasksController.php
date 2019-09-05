@@ -97,6 +97,6 @@ class TasksController extends Controller
         $task=Task::find($id);
         $task->delete();
 
-        return redirect('/home')->with('success','Task deleted successfully');
+        return redirect('/dashboard')->with('success','Task deleted successfully');
     }
 }

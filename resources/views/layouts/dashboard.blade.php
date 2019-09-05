@@ -64,9 +64,9 @@
                 
             }
             .top-right.links>a {
-    float: right;
-    font-size: large;
-}
+              float: right;
+            font-size: large;
+             }
 
             .content {
                 text-align: center;
@@ -156,11 +156,7 @@
     transform: translateY(-50%);
     margin: 0 !important;
 }
-.latest-recipes{
-    top: 20%;
-    position: relative;
-    transform:translateY(50%);
-}
+
 
 .top-right.links {
     width: 100%;
@@ -226,14 +222,21 @@ font-size: 20px;
     margin-bottom: 9%; 
 }
 
-/*end  welcome buttons*/
+#card{
+    box-shadow: 3px 4px 5px #fff ;
+    background-color:#ccc;
+    width: 50%;
+    margin-left: 300px;
+    
+}
 
         </style>
              </head>
     <body>
         <div class="flex-center position-ref full-height" id="full-body">
+            
                 <div class="right-title">
-                        <h1>{{ config('app.name',) }}</h1>  
+                        <h1 style="text-decoration:underline">{{ config('app.name',) }}</h1>  
                        </div>
             </div>
                    
@@ -297,24 +300,51 @@ font-size: 20px;
                 
         
         </div>
-        @include('inc.messages') 
-        <div>
-            <div class="panel-body ">
+        @include('inc.messages')
+        
+         
+        <div id="card">
+            <div class="panel-body">
                 <h1 class="text-center" style="text-decoration:underline">My list</h1>
                 
                 @foreach($tasks as $task)
                 <div class="task">
                 <ul>
+                
                         
                 <li style="list-style-type:none "><input type="checkbox">{{$task->item}}</li>
                 <div style="margin:20px">
-                <i class="icon-trash"></i><a href="route{{ action('TasksController@destroy', ['id' => $task->id ,'method'=>'DELETE'] ) }}">delete</a>/
-                <i class="icon-edit"></i><a href="route()">edit</a>
+                          
+                  
+                    <i class="icon-trash"></i><a style="color:black" href="{{ route('tasks.destroy', ['id' => $task->id]) }}">delete</a>/
+                    <i class="icon-edit"></i><a style="color:black"  data-toggle="modal" href="#exampleModal1" data-target="#exampleModal1">edit</a>
+                      <!-- Edit Modal -->
+  <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document"  >
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel2">Create</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                    {!! Form::open(['action' => ['TasksController@update',$task->id],'method'=>'POST','enctype'=>'multipart/form-data'])!!}
+                    <div class="form-group">
+                    {{Form::label('item','Create task')}}
+                    {{Form::text('item',$task->item,['class'=>'form-control','placeholder'=>'Insert here'])}}
+                    </div>
+                    {{Form::submit('submit',['class'=>'btn btn-primary','type'=>'submit','id'=>'submit'])}}
+                    {{Form::hidden('_method','PUT')}}
+                    {!! Form::close() !!}
+            </div>
+                
                 </div>
                 </ul>
                 </div>
                 @endforeach
             </div>
+        </div>
         </div>
         
     </body>

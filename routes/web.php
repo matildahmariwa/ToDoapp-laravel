@@ -17,11 +17,18 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('layouts.dashboard');
 });
+Route::get('/modal', function () {
+    return view('layouts.modal');
+});
+Route::get('/index',function(){
+    return view('layouts.index');
+});
 
 Auth::routes();
 
 Route::resource('tasks','TasksController');
-Route::get('/home/{task_id}/edit', ['as' => 'edit', 'uses' => 'TasksController@edit']);
+Route::get('/tasks/delete/{id}', 'TasksController@destroy')->name('tasks.destroy');
+// Route::get('/home/{task_id}/edit', ['as' => 'edit', 'uses' => 'TasksController@edit']);
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
