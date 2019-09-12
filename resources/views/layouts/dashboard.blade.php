@@ -284,7 +284,7 @@ font-size: 20px;
 
 
                         {{-- @if (Route::has('register')) --}}
-                            <a href="{{ route('register') }}"><i class="icon-signout"></i>LOGOUT</a>
+                            <a href="{{ route('logout') }}"><i class="icon-signout"></i>LOGOUT</a>
                            
                             <a data-toggle="modal" href="#exampleModal" data-target="#exampleModal"><i class="icon-plus"></i>ADD TASK</a>
                             <a  href=""><i class="icon-user"></i> Hello,{{ Auth::user()->name }}!</a>

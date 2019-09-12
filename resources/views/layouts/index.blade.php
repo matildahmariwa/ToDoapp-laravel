@@ -16,38 +16,90 @@
         <link href="https://fonts.googleapis.com/css?family=Great+Vibes" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Lato|Raleway&display=swap" rel="stylesheet">
 <style>
+
+
  #auth-card{
     box-shadow: 3px 4px 5px #fff;
-    background-color: blue;
+    /* background-color: blue; */
     height: 560px;
     width: 458px;
     margin-left: 377px;
     margin-top: 122px;
     margin-bottom: 213px;
- }   
+    position:absolute;
+ }  
+ .auth-buttons {
+    /* margin-left:376px;
+    margin-top: 83px; */
+    /* position: absolute; */
+    /* background-color: blue; */
+    
+ }
+ #btn-register{
+    margin-left:184px;
+ }
+ #btn-login{
+    margin-left: 57px; 
+    position: relative; 
+    border-bottom:6px solid;  
+ }
+ .btn{
+    border-bottom:6px solid; 
+    margin-bottom: 17px;
+    color: black;
+ }
+ .textbox{
+     width: 100%;
+     overflow: hidden;
+     font-size: 20px;
+     padding: 8px 0;
+     margin: 8px 0;
+     border-bottom: 1px solid ;
+ }
+.inputs{
+border:none;
+outline: none;
+background-color:none;
+ }
+ .inputs value{
+     background: none;
+ }
 </style>
 </head>
 <body>
+       
  <div id="auth-card">
-        <div class="buttons">
-                <a class="button" id="showdiv1">Div 1</a>
-                <a class="button" id="showdiv2">Div 2</a>
+        <div class="auth-buttons">
+                <a class="btn" id="btn-login">Login</a>
+                <a class="btn" id="btn-register">Register</a>
                 
                 </div>
-                
-                <div id="div1" class="all">1</div>
-                <div id="div2" class="all">2</div>
+<div id="lgn" class="btns">
+        <form action="/login" method="post" >
+            <div class="textbox">
+                <i class="icon-user"></i>
+                <input type="email" placeholder="Email" name="" value="" class="inputs">
+            </div>
+             
+            <div class="textbox">
+                    <i class="icon-lock"></i>
+                <input type="password" placeholder="Password" name="" value="" class="inputs">
+            </div>
+            
+        </form>
+</div>
+<div id="reg" class="btns">2</div>
                 
  <script>
 
-
-$('#showdiv1').click(function(){
-    $('.all').hide();
-    $('#div1').show();
+$('#reg').hide();
+$('#btn-login').click(function(){
+    $('#reg').hide();
+    $('#lgn').show();
 });
-$('#showdiv2').click(function(){
-    $('.all').hide();
-    $('#div2').show();
+$('#btn-register').click(function(){
+    $('#lgn').hide();
+    $('#reg').show();
 });
 
  </script>

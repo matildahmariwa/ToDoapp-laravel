@@ -29,6 +29,6 @@ Auth::routes();
 Route::resource('tasks','TasksController');
 Route::get('/tasks/delete/{id}', 'TasksController@destroy')->name('tasks.destroy');
 // Route::get('/home/{task_id}/edit', ['as' => 'edit', 'uses' => 'TasksController@edit']);
-
+Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
