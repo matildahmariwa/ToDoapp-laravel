@@ -182,10 +182,9 @@
     
 }
 
-/* The footer */
 
 
-/*end  welcome buttons*/
+
 
 div#full-body>div:nth-child(2)>a:last-child>button:hover {
     background-color: blue;
