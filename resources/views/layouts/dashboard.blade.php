@@ -120,44 +120,7 @@
             font-weight: bold;
             color: white;
         }    
-   
-        /* start the footer */
-        .footer:before{
-            content: '';
-    width: 100%;
-    border-bottom: solid 5px #000;
-    position: absolute;
-    left: 0;
-    top: 50%;
-    z-index: 1;
-        }
-    .footer {
-    background-color:white;
-    
-    font-size: 10px !important;
-    padding-bottom: 10px;
-    
-}
-
-.footer * {
-    font-size: 15px;
-    color: #000;
-}
-
-
-
-.footer a {
-    color: black;
-}
-
-.footer>* {
-    top: 50%;
-    position: relative;
-    transform: translateY(-50%);
-    margin: 0 !important;
-}
-
-
+ 
 .top-right.links {
     width: 100%;
     max-width: 955px;
@@ -347,9 +310,5 @@ font-size: 20px;
         </div>
         
     </body>
-    
-        <div class="footer">
-            <h5 class="text-center" style="padding-top:30px">Copyright @<?php echo date("Y");?> <a href="#">Matildah mariwa</a> All Rights Reserved</h5>
-        </div>
-     
+    @include('footer')    
 </html>

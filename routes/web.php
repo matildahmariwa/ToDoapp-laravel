@@ -17,6 +17,9 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('layouts.dashboard');
 });
+Route::get('/trial', function () {
+    return view('layouts.trial');
+});
 Route::get('/modal', function () {
     return view('layouts.modal');
 });
