@@ -258,13 +258,9 @@ font-size: 20px;
                         {{-- @endif --}}
                     {{-- @endauth --}}
 
-                   
-                
-        
         </div>
         @include('inc.messages')
-        
-         
+       
         <div id="card">
             <div class="panel-body">
                 <h1 class="text-center" style="text-decoration:underline">My list</h1>
@@ -310,5 +306,5 @@ font-size: 20px;
         </div>
         
     </body>
-    @include('footer')    
+    @include('layouts.footer')    
 </html>

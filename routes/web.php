@@ -11,8 +11,8 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/',function(){
+    return view('layouts.index');
 });
 Route::get('/dashboard', function () {
     return view('layouts.dashboard');
@@ -23,9 +23,7 @@ Route::get('/trial', function () {
 Route::get('/modal', function () {
     return view('layouts.modal');
 });
-Route::get('/index',function(){
-    return view('layouts.index');
-});
+
 
 Auth::routes();
 

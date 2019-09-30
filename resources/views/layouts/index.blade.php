@@ -16,18 +16,13 @@
     <link href="https://fonts.googleapis.com/css?family=Great+Vibes" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lato|Raleway&display=swap" rel="stylesheet">
     <style>
-            body{
-                
-                background-repeat: no-repeat;
-                background-size:100% 100%;
-                background-position: center ;
+        
+            html,body{
+             
+                overflow: hidden;
                    
             } 
-            /* #wrapper{
-                width: 100%;
-                height: 100%;
-                
-            }  */
+            
             .btns form{
                 margin-top:80px;
                 
@@ -39,39 +34,47 @@
                
                 
             } 
-            .row{
-                
-                height: 85%;
-                width: 100%;
-                background-color: white;
-            } 
-            .row::before{
-                border: 1px black;
-            }         
-#welcome-text{   
-       
-}
-            #welcome-text img{
-              height:132%;
-              width: 130%;
-              margin-right:0px;
+            #main-div{
                
-            }
+                width: 1024px;
+                height:768px;
+           
+            } 
+            .col-lg-6{
+                width:512px;
+                height:100vh;
             
+            }
+            #welcome-text{
+            background-image: url(css/index11.png);
+            background-repeat: no-repeat;
+            background-position-x: 80%;
+            background-position-y: center;
+            background-size:cover;
+
+            position: relative;
+            }
+            #welcome-text p{
+             font:42px;
+             margin-top: 200px;
+             bottom:0px;
+            }
+           
              #auth-card{
                 /* box-shadow: 3px 4px 5px #fff; */
-                padding-right:30px;
+                padding:0px 40px 0px 40px ;
                 margin-left: 10px;
-                height: 100%;
+               
                 background-color:white;
                 margin: 0 auto;
                 padding-top: 200px;
-               
                 
+              
+             
              }  
              .auth-buttons {
-               margin-left:300px;
-               margin-top:-180px;
+               margin-top:-160px;
+               margin-left:400px;
                position:absolute;  
              }
             
@@ -109,7 +112,6 @@
            .textbox input{
             border:none;
             outline: none;
-            background-color:none;
             color:black;
             font-size: 18px;
             width:80%;
@@ -120,14 +122,28 @@
              .active{
                 border-bottom:2px solid turquoise!important; 
               }
+              .submit-buttons{
+                  border-radius:25px;
+                  padding:7px;
+                  width:125px;
+                  margin-left: 169px;
+                  margin-top: 15px;
+                  background-color:turquoise;
+                  color:white;
+                  font-weight: bold;
+                  border:2px solid;
+              }
+              #terms{
+                  margin-top: 20px;
+              }
               
             </style>
 </head>
 <body>
-<div class="container" id="wrapper">
-<div class="row no-gutters">
+<div class="row no-gutters" id="main-div" >
 <div class="col-lg-6" >
 <div id="auth-card">
+
         <div class="auth-buttons" >
                 <a class="btn" id="btn-login">Login</a>
                 <a class="btn" id="btn-register">Register</a>
@@ -136,45 +152,68 @@
                 
 <div id="lgn" class="btns">
     <span class="logo">
-    <h5>To<font color="#F4D03F ">Do</font></h5>
+    <h5>Day<font color="#F4D03F ">planner</font></h5>
     </span>
-    <p> Welcome back, <br> <b>Matildah! </b>
+    <p> Welcome back, <br> <b>Matildah!</b>
     </p>
-        <form action="/login" method="post">
+        <form method="POST" action="{{ route('login') }}">
+            @csrf
             <div class="textbox">
-                <i class="icon-user"></i>
-                <input type="email" placeholder="Email" name="" value="" class="inputs" >
+                <i class="icon-envelope"></i>
+                <input type="email" placeholder="Email" name="email" class="inputs">
+                
             </div>
-             
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <div class="textbox">
                     <i class="icon-lock"></i>
-                <input type="password" placeholder="Password" name="" value="" class="inputs" autocomplete="new-password">
+                <input type="password" placeholder="Password" name="password" value="" class="inputs" autocomplete="new-password">
+                @if ($errors->has('password'))
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $errors->first('name') }}</strong>
+                </span>
+            @endif
             </div>
-            <input type="submit" value="Login">
+            <input type="submit" value="Login" class="submit-buttons">
             
         </form>
 </div>
 <div id="reg" class="btns">
-        <span class="logo">
-                <h5>To<font color="#F4D03F ">Do</font></h5>
-                </span>
+    <span class="logo">
+        <h5>Day<font color="#F4D03F ">planner</font></h5>
+        </span>
     <p>Create account</p>
-    <form action="/login" method="post" >
+    <form action="{{route('register')}}" method="POST" >
+       
         <div class="textbox">
             <i class="icon-user"></i>
-            <input type="name" placeholder="Username" name="" value="" class="inputs">
+            <input type="name" placeholder="Username" name="name"  class="inputs">
+            
+            @if ($errors->has('name'))
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $errors->first('name') }}</strong>
+            </span>
+        @endif
         </div>
-         
+        <div class="textbox">
+            <i class="icon-envelope"></i></i>
+        <input type="email" placeholder="Email" name="email"  class="inputs">
+    
+    </div>
+
+        <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <div class="textbox">
                 <i class="icon-lock"></i>
-            <input type="password" placeholder="Password" name="" value="" class="inputs" autocomplete="new-password">
+            <input type="password" placeholder="Password" name="password"  class="inputs" autocomplete="new-password">
+        
         </div>
         
         <div class="textbox">
             <i class="icon-lock"></i>
-        <input type="password" placeholder="confirm password" name="" value="" class="inputs">
+        <input type="password" placeholder="confirm password"name="password_confirmation" value="" class="inputs">
     </div>
-    <input type="submit" value="Create Account">
+    <div id="terms"><input type="checkbox"> I have read and agreed to the <a href="">terms and conditions</a></div>
+    
+    <input type="submit" value="Register" class="submit-buttons">
     </form>  
 </div> {{--End of auth-card--}}
 </div>
@@ -202,8 +241,9 @@
          <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
 <div class="col-lg-6" id="welcome-text" >
-<img src="css/index3.jpg">
+
 <div> {{--End of welcome-text column--}}
+        
 </div> {{--End of row--}}
 </div>
 </div>
