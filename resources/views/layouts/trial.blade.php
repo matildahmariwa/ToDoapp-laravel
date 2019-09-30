@@ -16,184 +16,46 @@
     <link href="https://fonts.googleapis.com/css?family=Great+Vibes" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Lato|Raleway&display=swap" rel="stylesheet">
     <style>
-            body{
-                
-                background-repeat: no-repeat;
-                background-size:100% 100%;
-                background-position: center ;
-                   
-            } 
-            /* #wrapper{
-                width: 100%;
-                height: 100%;
-                
-            }  */
-            .btns form{
-                margin-top:80px;
-                
-            }
-            #lgn p{
-               font-size: 28px;
-                
-            } 
-            .row{
-                
-                height: 85%;
-                width: 100%;
-                background-color: white;
-            } 
-            .row::before{
-                border: 1px black;
-            }         
-#welcome-text{   
-       
-}
-            #welcome-text img{
-              height:120%;
-              width: 130%;
-              margin-right:0px;
-               
-            }
-            
-             #auth-card{
-                /* box-shadow: 3px 4px 5px #fff; */
-                padding-right:30px;
-                margin-left: 10px;
-                height: 100%;
-                background-color:white;
-                margin: 0 auto;
-                padding-top: 200px;
-               
-                
-             }  
-             .auth-buttons {
-               margin-left:300px;
-               margin-top:-180px;
-               position:absolute;  
-             }
-            
-             .btn{
-                border-bottom:1px solid ; 
-                
-                color: black;
-                
-                font-size: 18px;
-             }
-             .btn:hover{
-                border-bottom:1px solid grey;
-              
-             }
-             
-             .textbox{
-                 width: 100%;
-                 overflow: hidden;
-                 font-size: 20px;
-                 padding: 8px 0;
-                 margin: 8px 0;
-                 border-bottom: 1px solid;
-             }
-             
-
-             }
-             .textbox i{
-                 margin-left:12px;
-                 margin-right: 2px;
-                 color: turquoise;
-             }
-           .textbox input{
-            border:none;
-            outline: none;
-            background-color:none;
-            color:black;
-            font-size: 18px;
-            width:80%;
-            float: left;
-            margin: 0 10px;
-             }
-           
-             .active{
-                border-bottom:2px solid turquoise!important; 
-              }
-              
-            </style>
+    .dashboard-layout{
+        display: flex;
+      
+    }
+    .sidebar{
+        flex: 1;
+        padding: 20px 50px;
+    } 
+    .main-column{
+        flex: 3;
+        padding: 20px 50px;
+      
+    }                
+ </style>
 </head>
 <body>
-<div class="container" id="wrapper">
-<div class="row no-gutters">
-<div class="col-lg-6">
-<div id="auth-card">
-        <div class="auth-buttons" >
-                <a class="btn" id="btn-login">Login</a>
-                <a class="btn" id="btn-register">Register</a>
-                
-                </div>
-                
-<div id="lgn" class="btns">
-    <p> Welcome back, <br> <b>Matildah! </b>
-    </p>
-        <form action="/login" method="post">
-            <div class="textbox">
-                <i class="icon-user"></i>
-                <input type="email" placeholder="Email" name="" value="" class="inputs" >
-            </div>
-             
-            <div class="textbox">
-                    <i class="icon-lock"></i>
-                <input type="password" placeholder="Password" name="" value="" class="inputs" autocomplete="new-password">
-            </div>
-            
-        </form>
-</div>
-<div id="reg" class="btns">
-    <form action="/login" method="post" >
-        <div class="textbox">
-            <i class="icon-user"></i>
-            <input type="name" placeholder="Username" name="" value="" class="inputs">
-        </div>
-         
-        <div class="textbox">
-                <i class="icon-lock"></i>
-            <input type="password" placeholder="Password" name="" value="" class="inputs" autocomplete="new-password">
-        </div>
-        
-        <div class="textbox">
-            <i class="icon-lock"></i>
-        <input type="password" placeholder="confirm password" name="" value="" class="inputs">
-    </div>
-        
-    </form>  
-</div> {{--End of auth-card--}}
-</div>
-</div>
-<script>
-
-        $('#reg').hide();
-        $('#btn-login').click(function(){
-            $('#reg').hide();
-            $('#lgn').show();
-        });
-        $('#btn-register').click(function(){
-            $('#lgn').hide();
-            $('#reg').show();
-        });
-        </script>
-        <script>
-        $('.auth-buttons a').on('click',function(){
-          $('a').removeClass('active');
-          $(this).addClass('active');
-        });
-              
-        </script>   
-        
-         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-
-<div class="col-lg-6" id="welcome-text" >
-<img src="css/index3.jpg">
-<div> {{--End of welcome-text column--}}
-</div> {{--End of row--}}
-</div>
-</div>
-
+<div class="dashboard-layout">
+<div class="sidebar">
+<span class="logo">
+<h5>Day<font color="#F4D03F ">planner</font></h5>
+</span>
+<ul>
+<li>Home</li>
+<li>My profile</li>
+<li>Task categories
+    <ul>
+        <li>Personal</li>
+        <li>Meetings</li>
+        <li>Email/call</li>
+        <li>Follow up</li>
+    </ul>
+</li>
+<li>Productivity</li>
+<li>Logout</li>
+</ul>
+</div><!--end of sidebar-->
+<div class="main-column">
+    main column
+</div> <!--end of main column-->
+</div> <!--end of mainbody-container-->
 </body>
 
 </html>
