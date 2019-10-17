@@ -160,8 +160,7 @@
             @csrf
             <div class="textbox">
                 <i class="icon-envelope"></i>
-                <input type="email" placeholder="Email" name="email" class="inputs">
-                
+                <input type="email" placeholder="Email" name="email" class="inputs">  
             </div>
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <div class="textbox">
