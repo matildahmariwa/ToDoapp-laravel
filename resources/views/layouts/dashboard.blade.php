@@ -15,7 +15,17 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montserrat|Raleway|Roboto&display=swap" rel="stylesheet">
     <style>
-      
+     html,body{
+         height:100%;
+          
+     }
+     body{
+         margin:0;
+     } 
+     .wrap{
+         height: 100%;
+         overflow-x:hidden;
+     }
     .dashboard-layout{
         display: flex;
       
@@ -57,27 +67,44 @@
         
         
     }
+    @keyframes sidebarmove{
+        from{opacity:0;}
+        to{opacity:1}
+    }
+    
     .sidebar-nav li{
         margin-bottom: 25px;
         color: black;
+        width: 127% ;
+        animation: 1s ease-out 0s 1 sidebarmove;
+        animation-delay:0.5s;
     }
    
     .sidebar-nav li a{
         color:black;
     }
+   
     .sidebar-nav li a:hover{
        text-decoration: none;
        opacity:1;
+      
     }
     i{
         margin-right:13px;
     }
     .intro-div{
-        width:105%;
-        height:32%;
-        background-color: #ff33cc;
+        width: 109%;
+        height: 17%;
+        background-color: #FFEEDE;
         border-radius: 25px;
         margin-left: -28px;
+    }
+    .intro-div img{
+    width: 34%;
+    height: 94%;
+    float: right;
+    margin-top: 4px;
+    margin-right: 78px;
     }
     .task-view{
         margin-top:20px;
@@ -109,6 +136,12 @@
         box-shadow: 2px 3px 4px 5px #fff ;
         padding:5px;
         border-left:4px solid #fbb901;
+        animation: 1s ease-out 0s 1 myresize;
+       animation-delay:0.8s;
+        
+    }
+    .icon-plus{
+        margin-right:3px;
     }
     .task-card p {
         margin-top: -17px !important;
@@ -140,6 +173,17 @@
     #add
     {
         float: right;
+        margin-top:-33px;
+        text-decoration: none;
+        border-radius:10px;
+        background-color:#e62a76;
+        height:30px;
+        width:105px;
+        padding-left:10px;
+        color:white;
+        font-size:15px;
+        padding-top: 2px;
+        font-weight: bold;
     }
     #cancel{
         background-color:#d9d9d9;
@@ -178,7 +222,7 @@
        -webkit-box-shadow: 0 0 3px #ccc;
         box-shadow: 0 0 3px #ccc;
         height: 43px;
-        width:215px;
+        width:360px;
         padding:20px;
        box-sizing: border-box;  
        border-radius:4px; 
@@ -208,8 +252,8 @@
     }
    .form-control::after{
     appearance: none;
--moz-appearance: none;
--webkit-appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
    }
     .form-control:focus{
     border-color:none !important;
@@ -217,7 +261,16 @@
        -webkit-box-shadow: 0 0 3px #ccc;
         box-shadow: 0 0 3px #ccc;
     }
-   
+
+{
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  
+  height:50px;
+
+}
+
     .textbox-first label{
         font-weight:bold;
     }
@@ -244,7 +297,7 @@
     border: 0cm;
     }
     .modal-footer>:not(:last-child):hover{
-        background-color: red;
+        background-color:#f0134d !important;
     }
     .btn-secondary{
         border:0;
@@ -255,6 +308,31 @@
   -webkit-appearance: none;
   appearance: none;
   height:50px;
+}
+.selectorDiv
+{
+  position:relative;
+}
+.selectorDiv::before
+{
+  position: absolute;
+  right: 10px;
+  top:0;
+  bottom:0;
+  
+  margin-top:auto;
+  margin-bottom:auto;
+  
+  margin-left: auto;
+ 
+  content: "";
+  z-index:5;
+  width: 0; 
+  height: 0; 
+  border-left: 10px solid transparent;
+	border-right: 10px solid transparent;
+	border-top: 20px solid turquoise; 
+  
 }
 
  
@@ -271,7 +349,7 @@
 }
 
 .dropdown-menu{
-    transform: translate3d(780px, -5px, 0px) !important;
+    transform: translate3d(550px, -9px, 0px) !important;
     font-size: 15px;
     padding:10px 10px 0px 10px !important;
     height:100px;
@@ -294,13 +372,92 @@
     flex: 2;
         padding: 20px 50px;
         line-height:200%;
+        position: relative;
 }
 .hello{
-  border-bottom: 2px solid blue !important;
+  border-right: 3px solid turquoise !important;
+ font-weight: bolder;
+}
+.intro-text{
+    float: left;
+    margin-left: 8px;
+    margin-top:22px;
+}
+.profile-p{
+vertical-align: middle;
+  width:180px;
+  height:180px;
+  border-radius: 50%;
+}
+.userName{
+    font-weight: bold;
+    margin-top: 17px;
+    margin-left: 36px;
+}
+.userEmail{
+    margin-top: -21px;
+    margin-left: 33px;
+}
+
+.activity-container h2{
+    color:#fbb901;
+}
+.activity-container h5{
+    margin-top:20px;
+    text-decoration: underline;
+}
+.analysis-container{
+    box-shadow: 0 0 3px #ccc;
+    height: 50%;
+    margin:5px -40px 0px -40px;
+    position: absolute;
+   
+}
+.analysis-container img{
+    height:70%;
+    width: 70%;
+}
+.analysis-container p{
+    margin-left: 15px;
+    margin-top:15px;
+}
+.activity-card{
+    display:flex;
+    flex-direction:row;
+    justify-content:space-between;
+    
+    padding:4px;
+    margin-left: -40px;
+    margin-right: -40px;
+
+}
+.task-stat{
+    box-shadow: 0 0 2px #ccc;
+    width:180px;
+    padding:5px 0px 10px 10px;
+    height: 90px;
+}
+
+.key i{
+ font-size:10px;
+}
+
+@keyframes myresize {
+    from { width:50%;
+    }
+    to{ width: 105%;
+    }
+  /* 0% {
+    transform: translateX(-80%);
+  }
+  100% {
+    transform: translateX(0);
+  } */
 }
  </style>
 </head>
 <body>
+
                               <!-- Modal -->
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document"  >
@@ -321,7 +478,7 @@
               <div class="form-group" style="float:right;margin-right:0px">
                 <label for="priority" style="font-weight:bold">Task priority</label><br>
                 <div class="selectorDiv">
-                <select class="form-control selectElement" style="width:380px;appearance:none">
+                <select class="form-control selectElement" style="width:380px;">
                 <option value="urgent" selected="selected">Urgent</option>
                 <option value="important">important</option>
                 <option value="later">Later</option>
@@ -332,16 +489,13 @@
                 <div class="clear" style="clear:both">&nbsp;</div>
                 <div class="textbox" style="float:left">
                         <label for="priority">Date</label><br>
-                        <input type="date" placeholder="Enter description here" name="description">
+                        <input type="date" placeholder="Enter priority here" name="description">
                         </div>
                         <div class="textbox" style="float:right">
                                 <label for="priority">Task category</label><br>
-                                <input type="text" placeholder="Enter description here" name="description">
+                                <input type="text" placeholder="Enter category here" name="description" style="width:380px">
                                 </div>
-                <div class="textbox" style="float:right;margin-right:80px">
-                <label for="priority">Pick color</label><br>
-                    <input type="" placeholder="Enter description here" name="description">
-                        </div>
+                
                 <div class="clear" style="clear:both">&nbsp;</div> 
                 <div class="textbox">
                         <label for="description">Description</label><br>
@@ -364,16 +518,16 @@
                         </div>
 <!-- End of modal -->
 
-   
+<div class="wrap">  
 <div class="dashboard-layout">
 <div class="sidebar">
 <span class="logo">
 <h5>Day<font color="#F4D03F">planner</font></h5>
 </span>
 <ul class="sidebar-nav">
-<li><i class="icon-home"></i><a href="{{route('dashboard')}}">Dashboard</a></li>
-<li><i class="icon-user"></i><a href=""> Profile</a></li>
-<li><i class="icon-tag"></i><a href="">Tags</a>
+<li><p><i class="icon-th-large"></i><a href="{{route('dashboard')}}">My Tasks</a></p></li>
+<li><p><i class="icon-user"></i><a href=""> Profile</a></p></li>
+<li><i class="icon-tag"></i>Tags
     <ul id="task-ul">
         <li ><a style="color:#e62a76" href=""><i class="icon-circle"></i>Personal</a></li>
         <li><a style="color:#774898" href=""><i class="icon-circle"></i> Meetings</a></li>
@@ -381,15 +535,19 @@
         <li><a style="color:#fbb901" href=""><i class="icon-circle"></i> Follow up</a></li>
     </ul>
 </li>
-<li><i class="icon-calendar"></i><a href="">Events</a></li>
-<li><i class="icon-bar-chart"></i><a href="">Productivity</a></li>
-<li><i class="icon-signout"></i><a href="">Logout</a></li>
+<li style=" animation-delay:0.8s"><p><i class="icon-calendar"></i><a href="">Events</a></p></li>
+<li style=" animation-delay:0.8s"><p><i class="icon-bar-chart"></i><a href="">Productivity</a></p></li>
+<li style=" animation-delay:0.8s"><p><i class="icon-signout"></i><a href="">Logout</a></p></li>
 </ul>
 </div><!--end of sidebar-->
 
 <div class="main-column">
 <div class="intro-div">
-<h1>Goodmorning,Matildah</h1>
+<div class="intro-text">
+ <p style="color:#00a8b5;font-weight:bold"> Goodmorning {{ Auth::user()->name }}!</p>
+ <p class="text-center">You have 13 tasks today,stay productive!</p>
+</div>
+<img src="css/welcome.jpg" alt="illustration of a person holding a laptop">
 </div>
 <div class="task-view">
     <a  id="today-btn" class="btn">Today</a>
@@ -398,7 +556,7 @@
     <a class="btn" id="later-btn">later</a>
     <a class="btn" id="weekly-btn">Weekly</a>
     
-<a data-toggle="modal" id="add" href="#exampleModal" data-target="#exampleModal"><i class="icon-plus"></i>ADD TASK</a>
+<a data-toggle="modal" id="add" href="#exampleModal" data-target="#exampleModal"><i class="icon-plus"></i>Add Task</a>
 
 <div id="today">
     
@@ -442,7 +600,28 @@
 </div><!--end of task view-->
 </div> <!--end of main column-->
 <div class="activity-container">
-you have 5 tasks
+<img src="css/profile-p.jpg" alt="profile photo" class="profile-p"><br>
+<p  class="userName">{{ Auth::user()->name }}</p>
+<p  class="userEmail">{{ Auth::user()->email }}</p>
+<div class="activity-card">
+<div class="task-stat"><i class="icon-tasks"></i>Total tasks today<br><h2>20</h2></div>
+<div class="task-stat" style="margin-right:-8px;margin-left:8px"><i class="icon-check"></i>Completed<br><h2>8</h2></div>
+</div><!--end of activity-card-->
+<div class="analysis-container">
+<h5 class="text-center" style="">Analysis</h5>
+<p >You are <b>75%</b> productive today!<p>
+    <img src="css/piechart.png" alt="illustration of pie chart">
+    <div class="key"> 
+            <ul>
+                    <li ><a style="color:#e62a76" href=""><i class="icon-circle"></i>Personal</a></li>
+                    <li><a style="color:#774898" href=""><i class="icon-circle"></i> Meetings</a></li>
+                    <li ><a style="color:turquoise" href=""><i class="icon-circle"></i>Email/call</a></li>
+                    <li><a style="color:#fbb901" href=""><i class="icon-circle"></i> Follow up</a></li>
+                </ul>
+    </div>
+</div>
+
+
 </div><!-- end of activity-container-->
 <script>
     $('.category').hide();
@@ -484,9 +663,9 @@ you have 5 tasks
 
 </script>
 <script>
-  $('.sidebar-nav li ').on('click', function(e) {
+  $('.sidebar-nav li p').on('click', function(e) {
   e.preventDefault();
-  $('.sidebar-nav li ').removeClass('hello');
+  $('.sidebar-nav li p').removeClass('hello');
   $(this).addClass('hello');
 });   
     </script>  
@@ -498,6 +677,7 @@ you have 5 tasks
         </script>
     
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+</div> <!--end of wrap-->
 </body>
 
 </html>

@@ -96,7 +96,8 @@
                  font-size: 20px;
                  padding: 8px 0;
                  margin: 8px 0;
-                 border-bottom: 1px solid;
+                 transition: padding 0.3s 0.2s ease;
+                 border-bottom: 1px solid ;
              }
              .logo h5{
               position: absolute;
@@ -118,7 +119,7 @@
             float: left;
             margin: 0 10px;
              }
-           
+          
              .active{
                 border-bottom:2px solid turquoise!important; 
               }
