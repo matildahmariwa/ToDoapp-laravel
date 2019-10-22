@@ -69,15 +69,15 @@
     }
     @keyframes sidebarmove{
         from{opacity:0;}
-        to{opacity:1}
+        to{opacity:1;}
     }
     
-    .sidebar-nav li{
+    #logout,.sidebar-nav li{
         margin-bottom: 25px;
         color: black;
         width: 127% ;
-        animation: 1s ease-out 0s 1 sidebarmove;
-        animation-delay:0.5s;
+        animation: 0.1s  sidebarmove forwards;
+        opacity:0;
     }
    
     .sidebar-nav li a{
@@ -137,8 +137,7 @@
         padding:5px;
         border-left:4px solid #fbb901;
         animation: 1s ease-out 0s 1 myresize;
-       animation-delay:0.8s;
-        
+     
     }
     .icon-plus{
         margin-right:3px;
@@ -525,19 +524,20 @@ vertical-align: middle;
 <h5>Day<font color="#F4D03F">planner</font></h5>
 </span>
 <ul class="sidebar-nav">
-<li><p><i class="icon-th-large"></i><a href="{{route('dashboard')}}">My Tasks</a></p></li>
-<li><p><i class="icon-user"></i><a href=""> Profile</a></p></li>
-<li><i class="icon-tag"></i>Tags
+<li style="animation-delay:0.1s"><p><i class="icon-th-large"></i><a href="{{route('dashboard')}}">My Tasks</a></p></li>
+<li style="animation-delay:0.2s"><p><i class="icon-user"></i><a href=""> Profile</a></p></li>
+<li style="animation-delay:0.3s"><i class="icon-tag"></i>Tags
     <ul id="task-ul">
         <li ><a style="color:#e62a76" href=""><i class="icon-circle"></i>Personal</a></li>
         <li><a style="color:#774898" href=""><i class="icon-circle"></i> Meetings</a></li>
         <li ><a style="color:turquoise" href=""><i class="icon-circle"></i>Email/call</a></li>
         <li><a style="color:#fbb901" href=""><i class="icon-circle"></i> Follow up</a></li>
     </ul>
+    
 </li>
-<li style=" animation-delay:0.8s"><p><i class="icon-calendar"></i><a href="">Events</a></p></li>
-<li style=" animation-delay:0.8s"><p><i class="icon-bar-chart"></i><a href="">Productivity</a></p></li>
-<li style=" animation-delay:0.8s"><p><i class="icon-signout"></i><a href="">Logout</a></p></li>
+<li style="animation-delay:0.4s"><p><i class="icon-calendar" ></i><a href="">Events</a></p></li>
+<li style="animation-delay:0.5s"><p><i class="icon-bar-chart" ></i><a href="">Productivity</a></p></li>
+<li style="animation-delay:0.6s"><i class="icon-signout"></i><a  id="logout" href="{{url('logout')}}">Logout</a></li>
 </ul>
 </div><!--end of sidebar-->
 
