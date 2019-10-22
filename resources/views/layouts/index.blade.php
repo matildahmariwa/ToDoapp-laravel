@@ -30,9 +30,7 @@
             .btns p{
                 font-size: 28px;
             }
-           
-               
-                
+            
             } 
             #main-div{
                
@@ -51,7 +49,6 @@
             background-position-x: 80%;
             background-position-y: center;
             background-size:cover;
-
             position: relative;
             }
             #welcome-text p{
@@ -69,13 +66,12 @@
                 margin: 0 auto;
                 padding-top: 200px;
                 
-              
-             
              }  
              .auth-buttons {
                margin-top:-160px;
                margin-left:400px;
-               position:absolute;  
+               position:absolute; 
+               transition: 2s; 
              }
             
              .btn{
@@ -95,22 +91,25 @@
                  overflow: hidden;
                  font-size: 20px;
                  padding: 8px 0;
-                 margin: 8px 0;
-                 transition: padding 0.3s 0.2s ease;
-                 border-bottom: 1px solid ;
+                 margin: 8px 0; 
+
              }
              .logo h5{
               position: absolute;
               margin-top: -161px;
              }
-
+             .about-info{
+                animation: op 0.5s;
              }
-             .textbox i{
-                 margin-left:12px;
-                 margin-right: 2px;
-                 color: turquoise;
-             }
-           .textbox input{
+          @keyframes op{
+              from{
+                  opacity:0;
+              }
+              to{
+                  opacity: 1;
+              }
+          }
+           .inputs{
             border:none;
             outline: none;
             color:black;
@@ -118,8 +117,23 @@
             width:80%;
             float: left;
             margin: 0 10px;
+            border-bottom: 1px solid;
+            animation: 1.5s grow;
+            background-color: none !important;
+            
+            
              }
-          
+             
+          @keyframes grow{
+              from{
+                  width:0%;
+                  
+              }
+              to{
+                  width: 80%;
+                 
+              }
+          }
              .active{
                 border-bottom:2px solid turquoise!important; 
               }
@@ -137,7 +151,19 @@
               #terms{
                   margin-top: 20px;
               }
-              
+              .inputs:focus{
+                outline: none;
+                border-bottom-color:#75EFDA;
+                transition:0.1s;
+                transition-delay:0.2s;
+              }
+             
+              .icon-envelope{
+                  margin-left:-33px;
+              }
+              .textbox i{
+                  margin-left:-33px;
+              }
             </style>
 </head>
 <body>
@@ -155,17 +181,19 @@
     <span class="logo">
     <h5>Day<font color="#F4D03F ">planner</font></h5>
     </span>
+    <div class="about-info">
     <p> Welcome back, <br> <b>Matildah!</b>
     </p>
+    </div>
         <form method="POST" action="{{ route('login') }}">
             @csrf
             <div class="textbox">
                 <i class="icon-envelope"></i>
-                <input type="email" placeholder="Email" name="email" class="inputs">  
+                <input type="email"  placeholder="Email" name="email" class="inputs">  
             </div>
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <div class="textbox">
-                    <i class="icon-lock"></i>
+                    <i class="icon-lock" ></i>
                 <input type="password" placeholder="Password" name="password" value="" class="inputs" autocomplete="new-password">
                 @if ($errors->has('password'))
                 <span class="invalid-feedback" role="alert">
@@ -211,8 +239,7 @@
             <i class="icon-lock"></i>
         <input type="password" placeholder="confirm password"name="password_confirmation" value="" class="inputs">
     </div>
-    <div id="terms"><input type="checkbox"> I have read and agreed to the <a href="">terms and conditions</a></div>
-    
+   
     <input type="submit" value="Register" class="submit-buttons">
     </form>  
 </div> {{--End of auth-card--}}
@@ -237,6 +264,15 @@
         });
               
         </script>   
+        {{-- <script>
+        $(function() {
+        $(".inputs").click(function() {
+        $(".inputs").animate({
+            borderBottom: "3px solid #00a8b5"
+        }, 1000);
+    });
+});
+        </script> --}}
         
          <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
