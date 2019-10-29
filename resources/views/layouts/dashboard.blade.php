@@ -226,17 +226,7 @@
        box-sizing: border-box;  
        border-radius:4px; 
     }
-    .textbox-first input{
-        border: none;
-       outline:none;
-       color:black;
-       -moz-box-shadow: 0 0 3px #ccc;
-       -webkit-box-shadow: 0 0 3px #ccc;
-        box-shadow: 0 0 3px #ccc;
-        padding:20px;
-        height: 43px;
-        border-radius:4px;  
-    }
+    
     
     .form-control{
        border:0 !important;
@@ -521,7 +511,7 @@ vertical-align: middle;
 <div class="dashboard-layout">
 <div class="sidebar">
 <span class="logo">
-<h5>Day<font color="#F4D03F">planner</font></h5>
+<h5>Weekly<font color="#F4D03F">planner</font></h5>
 </span>
 <ul class="sidebar-nav">
 <li style="animation-delay:0.1s"><p><i class="icon-th-large"></i><a href="{{route('dashboard')}}">My Tasks</a></p></li>
