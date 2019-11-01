@@ -221,7 +221,7 @@
     <div class="about-info">
     <p> Organise your tasks,<br>In a <span class="hey1">fun</span> & <span class="hey1">flexible</span> way</p>
     </div>
-        <form method="POST" action="{{ route('login') }}" autocomplete="off">
+        <form method="POST" action="{{ route('login')}}" autocomplete="off">
             @csrf
             @if($errors->any()) 
             <div class="auth-error">
@@ -248,10 +248,15 @@
     <span class="logo">
         <h5>Task<font color="#F4D03F ">Weekly</font></h5>
         </span>
+       
     <p>Create account</p><br>
     <p style="font-size:20px">Fill in your details to start using TaskWeekly</p>
-    <form action="{{route('register')}}" method="POST" >
-       
+    <form action="{{route('register')}}" method="POST">
+        @if (count($errors) > 0)
+        @foreach ($errors->all() as $error)
+          <p class="errorClass">{{ $error }}</p>
+        @endforeach
+      @endif
         <div class="textbox">
             <i class="icon-user"></i>
             <input type="name" placeholder="Username" name="name"  class="inputs">
@@ -280,9 +285,16 @@
 </div> {{--End of auth-card--}}
 </div>
 </div>
+@if (!empty($tab) && $tab == 'reg')
+  <script type="text/javascript">
+    $('#lgn').hide();
+    $('#reg').show();
+   </script>
+@endif
 <script>
-
+   
         $('#reg').hide();
+       
         $('#btn-login').click(function(){
             $('#reg').hide();
             $('#lgn').show();
@@ -292,6 +304,19 @@
             $('#reg').show();
         });
         </script>
+        <script>
+       
+    $(function() {
+    let hasErrors = document.getElementsByClassName('errorClass').length > 0;
+
+    if(hasErrors)
+    {
+        $('#btn-register').trigger('click');
+    }
+    
+       });
+        </script>
+    
         <script>
         $('.auth-buttons a').on('click',function(){
           $('a').removeClass('active');

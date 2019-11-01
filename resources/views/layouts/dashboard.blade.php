@@ -17,7 +17,9 @@
     <style>
      html,body{
          height:100%;
-          
+        
+  scroll-behavior: smooth;
+  
      }
      body{
          margin:0;

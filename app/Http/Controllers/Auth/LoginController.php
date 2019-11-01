@@ -49,15 +49,7 @@ class LoginController extends Controller
             return redirect()->intended('dashboard');
         
         }
-        else {
-
-            // authentication fail, back to login page with errors
-   
-            return Redirect::to('login')
-               ->withErrors('Incorrect login details');
-   
-            }                                                                                       
-
+      
     }
     public function logout () {
         //logout user
