@@ -17,5 +17,6 @@ class Authenticate extends Middleware
         if (! $request->expectsJson()) {
             return route('login');
         }
+        return back()->withInput()->withErrors(['password'=>'Username or password is invalid']);
     }
 }

@@ -7,7 +7,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
-
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\URL;
 class RegisterController extends Controller
 {
     /*
@@ -53,6 +55,10 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
+
+       
+    
+
     }
 
     /**
@@ -67,7 +73,13 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+           
         ]);
-        
+
+        if ( $validator->fails() ) {
+            return redirect()
+    		->to('/To-do/public#register-page')
+    		->withErrors($validator->errors());
+        }
     }
 }

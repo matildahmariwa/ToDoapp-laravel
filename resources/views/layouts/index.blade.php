@@ -10,6 +10,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.4.4.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
     
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -19,7 +21,7 @@
         
             html,body{
              
-                overflow: hidden;
+                /* overflow: hidden; */
                    
             } 
             
@@ -71,15 +73,15 @@
                margin-top:-160px;
                margin-left:400px;
                position:absolute; 
-               transition: 2s; 
+              
              }
             
              .btn{
                 border-bottom:1px solid ; 
-                
+                padding-right:0px;
                 color: black;
-                
                 font-size: 18px;
+                letter-spacing: 2.5px;
              }
              .btn:hover{
                 border-bottom:1px solid grey;
@@ -100,7 +102,10 @@
              }
              .about-info{
                 animation: op 0.5s;
+                margin-top:5px;
+                
              }
+            
           @keyframes op{
               from{
                   opacity:0;
@@ -119,11 +124,8 @@
             margin: 0 10px;
             border-bottom: 1px solid;
             animation: 1.5s grow;
-            background-color: none !important;
-            
-            
              }
-             
+           
           @keyframes grow{
               from{
                   width:0%;
@@ -137,32 +139,84 @@
              .active{
                 border-bottom:2px solid turquoise!important; 
               }
+              .forgot{
+                  margin-left:10px; 
+                  text-decoration: underline;
+              }
+              
               .submit-buttons{
-                  border-radius:25px;
-                  padding:7px;
-                  width:125px;
-                  margin-left: 169px;
-                  margin-top: 15px;
-                  background-color:turquoise;
-                  color:white;
-                  font-weight: bold;
-                  border:2px solid;
+            width: 125px;
+            height: 45px;
+            margin-left:234px;
+            margin-top: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2.5px;
+            font-weight:500;
+            color: #000;
+            background-color:turquoise;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease 0s;
+            cursor: pointer;
+            outline: none;
+            }
+            #register{
+                margin-left: 169px !important;
+            }
+
+              }
+              .submit-buttons:active{
+                box-shadow: none;
+              }
+              .submit-buttons:focus{
+            outline: 0;
+              box-shadow: none!important;
+  
               }
               #terms{
                   margin-top: 20px;
               }
-              .inputs:focus{
-                outline: none;
-                border-bottom-color:#75EFDA;
-                transition:0.1s;
-                transition-delay:0.2s;
-              }
+                .inputs:focus{
+                    outline: none;
+                    border-bottom-color:#75EFDA;
+                    transition:0.1s;
+                    transition-delay:0.2s;
+                    background: white;
+                }
              
               .icon-envelope{
                   margin-left:-33px;
               }
               .textbox i{
                   margin-left:-33px;
+              }
+              .hey1{
+                  color:turquoise;
+              }
+              .fill{
+                  font-size: 10px;
+              }
+              .auth-error{
+               background-color:#FFBABA;
+               color: #D8000C;
+               height: 40px;
+               padding: 5px 5px 5px 15px;
+               width:80%;
+               margin: 0 10px;
+               border-radius:5px;
+              
+              }
+              .auth-error i{
+                  margin-right:5px;
+                  
+              }
+              label.error::before{
+                  content: "*";
+              }
+              label.error{
+                  color:#D8000C;
+                  font-size: 16px;
               }
             </style>
 </head>
@@ -174,19 +228,22 @@
         <div class="auth-buttons" >
                 <a class="btn" id="btn-login">Login</a>
                 <a class="btn" id="btn-register">Register</a>
-                
                 </div>
-                
-<div id="lgn" class="btns">
+               
+<div id="lgn" class="btns" >
     <span class="logo">
-    <h5>Day<font color="#F4D03F ">planner</font></h5>
+    <h5>Task<font color="#F4D03F ">Weekly</font></h5>
     </span>
     <div class="about-info">
-    <p> Welcome back, <br> <b>Matildah!</b>
-    </p>
+    <p> Organise your tasks,<br>In a <span class="hey1">fun</span> & <span class="hey1">flexible</span> way</p>
     </div>
-        <form method="POST" action="{{ route('login') }}">
+        <form method="POST" action="{{ route('login')}}" autocomplete="off" id="login-form">
             @csrf
+            @if($errors->any()) 
+            <div class="auth-error">
+            <i class="icon-warning-sign"></i>Error:Incorrect password/email.Please try again
+            </div>
+          @endif
             <div class="textbox">
                 <i class="icon-envelope"></i>
                 <input type="email"  placeholder="Email" name="email" class="inputs">  
@@ -194,44 +251,39 @@
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <div class="textbox">
                     <i class="icon-lock" ></i>
-                <input type="password" placeholder="Password" name="password" value="" class="inputs" autocomplete="new-password">
-                @if ($errors->has('password'))
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $errors->first('name') }}</strong>
-                </span>
-            @endif
+                <input type="password"  placeholder="Password" name="password" value="" class="inputs" autocomplete="new-password" >
+               
+           
             </div>
+            <a class="forgot" href="{{ route('password.update') }}">Forgot password?</a>
             <input type="submit" value="Login" class="submit-buttons">
             
         </form>
 </div>
-<div id="reg" class="btns">
+<div id="reg" class="btns" data-tab-index="1">
     <span class="logo">
-        <h5>Day<font color="#F4D03F ">planner</font></h5>
+        <h5>Task<font color="#F4D03F ">Weekly</font></h5>
         </span>
-    <p>Create account</p>
-    <form action="{{route('register')}}" method="POST" >
        
+    <p >Create account</p><br>
+    <p style="font-size:20px">Fill in your details to start using TaskWeekly</p>
+    <form action="{{route('register')}}" method="POST" id="register-form">
+      
         <div class="textbox">
             <i class="icon-user"></i>
             <input type="name" placeholder="Username" name="name"  class="inputs">
             
-            @if ($errors->has('name'))
-            <span class="invalid-feedback" role="alert">
-                <strong>{{ $errors->first('name') }}</strong>
-            </span>
-        @endif
-        </div>
+                 </div>
         <div class="textbox">
             <i class="icon-envelope"></i></i>
-        <input type="email" placeholder="Email" name="email"  class="inputs">
+        <input type="email" placeholder="yourname@mail.com" name="email"  class="inputs">
     
     </div>
 
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <div class="textbox">
                 <i class="icon-lock"></i>
-            <input type="password" placeholder="Password" name="password"  class="inputs" autocomplete="new-password">
+            <input type="password" placeholder="Password" name="password" id="password" class="inputs" autocomplete="new-password">
         
         </div>
         
@@ -240,14 +292,17 @@
         <input type="password" placeholder="confirm password"name="password_confirmation" value="" class="inputs">
     </div>
    
-    <input type="submit" value="Register" class="submit-buttons">
+    <input type="submit" value="Register" class="submit-buttons" id="register">
     </form>  
 </div> {{--End of auth-card--}}
 </div>
 </div>
-<script>
 
+
+<script>
+   
         $('#reg').hide();
+       
         $('#btn-login').click(function(){
             $('#reg').hide();
             $('#lgn').show();
@@ -257,25 +312,72 @@
             $('#reg').show();
         });
         </script>
+        
         <script>
-        $('.auth-buttons a').on('click',function(){
+        $('.auth-buttons a').click(function(){
           $('a').removeClass('active');
           $(this).addClass('active');
         });
               
-        </script>   
-        {{-- <script>
-        $(function() {
-        $(".inputs").click(function() {
-        $(".inputs").animate({
-            borderBottom: "3px solid #00a8b5"
-        }, 1000);
-    });
+        </script>  
+       
+      <script type="text/javascript">
+$(document).ready(function() {
+ $('#register-form').validate({
+    rules:{
+        name:{
+            required:true,
+        },
+        email:{
+            required:true,
+            email:true
+        },
+        password:{
+            required:true,
+            minlength:8
+        },
+        password_confirmation:{
+        minlength : 8,
+       equalTo:'#password'  
+    }
+},
+messages:{
+   name:{
+       required:"Please enter name",
+   },
+   email:{
+       required:"Please enter email",
+       email:"Please enter your email address in the format:yourname@email.com"
+   },
+   password:{
+       required:"Please enter password",
+       minlength:"Password must be at least 8 characters"
+   },
+  password_confirmation:{
+      required:"Confirm your password",
+      equalTo:"passwords does not match"
+  }
+}
+ });
+ $('#login-form').validate({
+    rules:{
+        email:{
+            required:true,
+        },
+        password:{
+            required:true,
+           
+        }
+    },
+    messages:{
+        email:"please enter email",
+        password:"please enter password"
+    }
+ });
+ 
 });
-        </script> --}}
-        
-         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-
+      </script>
+       
 <div class="col-lg-6" id="welcome-text" >
 
 <div> {{--End of welcome-text column--}}

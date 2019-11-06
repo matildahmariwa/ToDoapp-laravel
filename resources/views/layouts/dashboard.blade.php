@@ -10,14 +10,16 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
-    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.0/jquery.waypoints.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js"></script>
+
+</head>
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Montserrat|Raleway|Roboto&display=swap" rel="stylesheet">
     <style>
      html,body{
-         height:100%;
-          
+        height:100%;
      }
      body{
          margin:0;
@@ -61,7 +63,7 @@
    
     .sidebar-nav{
         margin-top:25px;
-        width: 159%;
+        width:143%;
         margin-left: -49px;
         height: 100%; 
         
@@ -108,14 +110,13 @@
     }
     .task-view{
         margin-top:20px;
-        
+       width: 106%;
     }
     .btn{
         margin-right:35px;
         background: rgba(138, 247, 255, 0.2);
-        /* background-color:#00a8b5;
-        opacity:0.3;   */
         border-radius:25px;
+        
     }
     .btn:hover{
         background-color:#8af7ff;
@@ -127,7 +128,7 @@
         margin-top: 20px;
     }
     .task-card{
-        width: 105%;
+        width: 100%;
         height:105px;
         /* background-color: #ff33cc; */
         margin-bottom: 15px;
@@ -174,15 +175,17 @@
         float: right;
         margin-top:-33px;
         text-decoration: none;
-        border-radius:10px;
-        background-color:#e62a76;
-        height:30px;
+        border-radius:5px;
+        background: rgb(241,30,122);
+        background: radial-gradient(90deg, rgba(241,30,122,1) 70%, rgba(234,238,242,1) 100%);
+        height:33px;
         width:105px;
-        padding-left:10px;
+        padding:5px 10px 10px 12px;
         color:white;
         font-size:15px;
-        padding-top: 2px;
+        
         font-weight: bold;
+        overflow: hidden;
     }
     #cancel{
         background-color:#d9d9d9;
@@ -226,17 +229,7 @@
        box-sizing: border-box;  
        border-radius:4px; 
     }
-    .textbox-first input{
-        border: none;
-       outline:none;
-       color:black;
-       -moz-box-shadow: 0 0 3px #ccc;
-       -webkit-box-shadow: 0 0 3px #ccc;
-        box-shadow: 0 0 3px #ccc;
-        padding:20px;
-        height: 43px;
-        border-radius:4px;  
-    }
+    
     
     .form-control{
        border:0 !important;
@@ -376,6 +369,7 @@
 .hello{
   border-right: 3px solid turquoise !important;
  font-weight: bolder;
+ font-size:18px;
 }
 .intro-text{
     float: left;
@@ -470,7 +464,7 @@ vertical-align: middle;
             <div class="modal-body">
             <form action="TasksController@store" method="POST">
                 <div>
-               <div class="textbox-first" style="float:left">
+               <div class="textbox" style="float:left">
                <label for="taskname"> Task Name </label><br>
                <input type="text" placeholder="Enter task title" name="title" style="width:360px">
                 </div>
@@ -521,7 +515,7 @@ vertical-align: middle;
 <div class="dashboard-layout">
 <div class="sidebar">
 <span class="logo">
-<h5>Day<font color="#F4D03F">planner</font></h5>
+<h5>Weekly<font color="#F4D03F">planner</font></h5>
 </span>
 <ul class="sidebar-nav">
 <li style="animation-delay:0.1s"><p><i class="icon-th-large"></i><a href="{{route('dashboard')}}">My Tasks</a></p></li>
@@ -545,15 +539,15 @@ vertical-align: middle;
 <div class="intro-div">
 <div class="intro-text">
  <p style="color:#00a8b5;font-weight:bold"> Goodmorning {{ Auth::user()->name }}!</p>
- <p class="text-center">You have 13 tasks today,stay productive!</p>
+ <p class="text-center">You have {{$tasks->count()}} tasks today,stay productive!</p>
 </div>
 <img src="css/welcome.jpg" alt="illustration of a person holding a laptop">
 </div>
 <div class="task-view">
     <a  id="today-btn" class="btn">Today</a>
-    <a class="btn" id="urgent-btn">urgent</a>
-    <a class="btn" id="important-btn">important</a>
-    <a class="btn" id="later-btn">later</a>
+    <a class="btn" id="urgent-btn">Urgent</a>
+    <a class="btn" id="important-btn">Important</a>
+    <a class="btn" id="later-btn">Later</a>
     <a class="btn" id="weekly-btn">Weekly</a>
     
 <a data-toggle="modal" id="add" href="#exampleModal" data-target="#exampleModal"><i class="icon-plus"></i>Add Task</a>
@@ -604,8 +598,8 @@ vertical-align: middle;
 <p  class="userName">{{ Auth::user()->name }}</p>
 <p  class="userEmail">{{ Auth::user()->email }}</p>
 <div class="activity-card">
-<div class="task-stat"><i class="icon-tasks"></i>Total tasks today<br><h2>20</h2></div>
-<div class="task-stat" style="margin-right:-8px;margin-left:8px"><i class="icon-check"></i>Completed<br><h2>8</h2></div>
+<div class="task-stat"><i class="icon-tasks"></i>Total tasks today<br><h2><span class="counter" data-counterup-time="1500" data-counterup-delay="30" data-counterup-beginat="100">{{$tasks->count()}}</span></h2></div>
+<div class="task-stat" style="margin-right:-8px;margin-left:8px"><i class="icon-check"></i>Completed<br><h2><span class="counter">8</span></h2></div>
 </div><!--end of activity-card-->
 <div class="analysis-container">
 <h5 class="text-center" style="">Analysis</h5>
@@ -662,6 +656,12 @@ vertical-align: middle;
         });
 
 </script>
+  <script>
+ $('.counter').counterUp({
+    delay: 10,
+    time: 200
+});
+</script> 
 <script>
   $('.sidebar-nav li p').on('click', function(e) {
   e.preventDefault();
@@ -676,7 +676,7 @@ vertical-align: middle;
         });       
         </script>
     
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
 </div> <!--end of wrap-->
 </body>
 
