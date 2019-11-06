@@ -77,10 +77,9 @@ class RegisterController extends Controller
         ]);
 
         if ( $validator->fails() ) {
-            return redirect(url()->previous() .'#reg')
-            ->withErrors($validator)
-            ->withInput()
-            ->withTab('reg');
+            return redirect()
+    		->to('/To-do/public#register-page')
+    		->withErrors($validator->errors());
         }
     }
 }

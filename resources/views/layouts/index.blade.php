@@ -10,6 +10,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+    <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-1.4.4.min.js"></script>
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
     
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
@@ -103,6 +105,7 @@
                 margin-top:5px;
                 
              }
+            
           @keyframes op{
               from{
                   opacity:0;
@@ -195,11 +198,25 @@
                   font-size: 10px;
               }
               .auth-error{
-                  background-color: red;
-                  color: white;
+               background-color:#FFBABA;
+               color: #D8000C;
+               height: 40px;
+               padding: 5px 5px 5px 15px;
+               width:80%;
+               margin: 0 10px;
+               border-radius:5px;
+              
               }
               .auth-error i{
                   margin-right:5px;
+                  
+              }
+              label.error::before{
+                  content: "*";
+              }
+              label.error{
+                  color:#D8000C;
+                  font-size: 16px;
               }
             </style>
 </head>
@@ -211,17 +228,16 @@
         <div class="auth-buttons" >
                 <a class="btn" id="btn-login">Login</a>
                 <a class="btn" id="btn-register">Register</a>
-                
                 </div>
-                
-<div id="lgn" class="btns">
+               
+<div id="lgn" class="btns" >
     <span class="logo">
     <h5>Task<font color="#F4D03F ">Weekly</font></h5>
     </span>
     <div class="about-info">
     <p> Organise your tasks,<br>In a <span class="hey1">fun</span> & <span class="hey1">flexible</span> way</p>
     </div>
-        <form method="POST" action="{{ route('login')}}" autocomplete="off">
+        <form method="POST" action="{{ route('login')}}" autocomplete="off" id="login-form">
             @csrf
             @if($errors->any()) 
             <div class="auth-error">
@@ -244,19 +260,15 @@
             
         </form>
 </div>
-<div id="reg" class="btns">
+<div id="reg" class="btns" data-tab-index="1">
     <span class="logo">
         <h5>Task<font color="#F4D03F ">Weekly</font></h5>
         </span>
        
-    <p>Create account</p><br>
+    <p >Create account</p><br>
     <p style="font-size:20px">Fill in your details to start using TaskWeekly</p>
-    <form action="{{route('register')}}" method="POST">
-        @if (count($errors) > 0)
-        @foreach ($errors->all() as $error)
-          <p class="errorClass">{{ $error }}</p>
-        @endforeach
-      @endif
+    <form action="{{route('register')}}" method="POST" id="register-form">
+      
         <div class="textbox">
             <i class="icon-user"></i>
             <input type="name" placeholder="Username" name="name"  class="inputs">
@@ -264,14 +276,14 @@
                  </div>
         <div class="textbox">
             <i class="icon-envelope"></i></i>
-        <input type="email" placeholder="Email" name="email"  class="inputs">
+        <input type="email" placeholder="yourname@mail.com" name="email"  class="inputs">
     
     </div>
 
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <div class="textbox">
                 <i class="icon-lock"></i>
-            <input type="password" placeholder="Password" name="password"  class="inputs" autocomplete="new-password">
+            <input type="password" placeholder="Password" name="password" id="password" class="inputs" autocomplete="new-password">
         
         </div>
         
@@ -285,12 +297,8 @@
 </div> {{--End of auth-card--}}
 </div>
 </div>
-@if (!empty($tab) && $tab == 'reg')
-  <script type="text/javascript">
-    $('#lgn').hide();
-    $('#reg').show();
-   </script>
-@endif
+
+
 <script>
    
         $('#reg').hide();
@@ -304,38 +312,72 @@
             $('#reg').show();
         });
         </script>
+        
         <script>
-       
-    $(function() {
-    let hasErrors = document.getElementsByClassName('errorClass').length > 0;
-
-    if(hasErrors)
-    {
-        $('#btn-register').trigger('click');
-    }
-    
-       });
-        </script>
-    
-        <script>
-        $('.auth-buttons a').on('click',function(){
+        $('.auth-buttons a').click(function(){
           $('a').removeClass('active');
           $(this).addClass('active');
         });
               
-        </script>   
-        {{-- <script>
-        $(function() {
-        $(".inputs").click(function() {
-        $(".inputs").animate({
-            borderBottom: "3px solid #00a8b5"
-        }, 1000);
-    });
+        </script>  
+       
+      <script type="text/javascript">
+$(document).ready(function() {
+ $('#register-form').validate({
+    rules:{
+        name:{
+            required:true,
+        },
+        email:{
+            required:true,
+            email:true
+        },
+        password:{
+            required:true,
+            minlength:8
+        },
+        password_confirmation:{
+        minlength : 8,
+       equalTo:'#password'  
+    }
+},
+messages:{
+   name:{
+       required:"Please enter name",
+   },
+   email:{
+       required:"Please enter email",
+       email:"Please enter your email address in the format:yourname@email.com"
+   },
+   password:{
+       required:"Please enter password",
+       minlength:"Password must be at least 8 characters"
+   },
+  password_confirmation:{
+      required:"Confirm your password",
+      equalTo:"passwords does not match"
+  }
+}
+ });
+ $('#login-form').validate({
+    rules:{
+        email:{
+            required:true,
+        },
+        password:{
+            required:true,
+           
+        }
+    },
+    messages:{
+        email:"please enter email",
+        password:"please enter password"
+    }
+ });
+ 
 });
-        </script> --}}
-        
-         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-
+      </script>
+       
 <div class="col-lg-6" id="welcome-text" >
 
 <div> {{--End of welcome-text column--}}
